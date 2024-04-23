@@ -1,5 +1,6 @@
 import dbConnect from "@/config/database";
 import Url from "@/models/url";
+import { URL } from 'url';
 import { nanoid } from "nanoid";
 
 export async function POST(req: Request) {
@@ -8,7 +9,17 @@ export async function POST(req: Request) {
     const reqBody = await req.json();
     const { url } = reqBody;
 
-    const tinyId = nanoid(8);
+    // Validate URL format
+    try {
+      new URL(url);  // Throws an error if URL is invalid
+    } catch (error) {
+      return Response.json({
+        success: false,
+        message: "Invalid URL format",
+      }, { status: 400 }); // Bad Request status code
+    }
+
+    const tinyId = nanoid(5);
 
     const newUrl = new Url({
       tinyUrl: tinyId,
@@ -30,7 +41,7 @@ export async function POST(req: Request) {
     return Response.json(
       {
         success: false,
-        message: error.message,
+        message: "Error Generating Tiny URL, Please try again...",
       },
       { status: 500 }
     );

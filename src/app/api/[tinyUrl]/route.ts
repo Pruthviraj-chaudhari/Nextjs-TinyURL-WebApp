@@ -37,12 +37,7 @@ export async function GET(req: NextApiRequest, {params}: any) {
     return Response.redirect(redirectUrl)
 
   } catch (error: any) {
-    return Response.json(
-      {
-        success: false,
-        error: error.message,
-      },
-      { status: 500 }
-    );
+    const baseUrl = process.env.BASE_URL || "http://localhost:3000"; 
+  return Response.redirect(baseUrl + "/not-found");
   }
 }

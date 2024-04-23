@@ -1,4 +1,4 @@
-import { LinkIcon } from "lucide-react";
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -18,7 +18,9 @@ const Navbar = () => {
             height={24}
             priority
           />
-          <p className="ml-2 text-lg text-slate-500  font-semibold">TinyURL.io</p>
+          <p className="ml-2 text-lg text-slate-500  font-semibold">
+            TinyURL.io
+          </p>
         </div>
       </Link>
 
