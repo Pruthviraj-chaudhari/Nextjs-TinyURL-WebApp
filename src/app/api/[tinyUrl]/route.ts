@@ -2,9 +2,12 @@ import dbConnect from "@/config/database";
 import URL from "@/models/url";
 
 export async function GET(req: Request, {params}: any) {
+
+  const baseUrl = `https://${process.env.NEXT_PUBLIC_BASE_URL}`; 
+
   try {
     await dbConnect();
-    
+
     const { tinyUrl } = params;
 
     const data = await URL.findOneAndUpdate(
@@ -21,10 +24,7 @@ export async function GET(req: Request, {params}: any) {
     );
 
     if(!data){
-        return Response.json({
-            success: false,
-            message: "Page Not Found"
-        }, {status: 404})
+        return Response.redirect(baseUrl + "/not-found");
     }
 
     let redirectUrl = data.redirectUrl;
@@ -36,7 +36,6 @@ export async function GET(req: Request, {params}: any) {
     return Response.redirect(redirectUrl)
 
   } catch (error: any) {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL; 
-  return Response.redirect(baseUrl + "/not-found");
+    return Response.redirect(baseUrl + "/not-found");
   }
 }
