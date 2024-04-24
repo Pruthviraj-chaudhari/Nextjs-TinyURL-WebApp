@@ -36,7 +36,7 @@ export async function GET(req: Request, {params}: any) {
     return Response.redirect(redirectUrl)
 
   } catch (error: any) {
-    const baseUrl = process.env.BASE_URL || "http://localhost:3000"; 
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL; 
   return Response.redirect(baseUrl + "/not-found");
   }
 }

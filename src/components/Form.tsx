@@ -7,14 +7,15 @@ import { Loader2 } from "lucide-react";
 import axios from "axios";
 
 const Form = () => {
-  const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [tinyUrl, setTinyUrl] = useState([
     {
       originalURL: "https://example.com",
-      tinyURL: `${baseUrl}/api/hgasb"`,
+      tinyURL: `${baseUrl}/api/hgasb`,
     },
   ]);
 
@@ -28,10 +29,13 @@ const Form = () => {
     setLoading(true);
     try {
       const response = await axios.post("/api/generateurl", { url: url });
-      tinyUrl.push({
-        originalURL: url,
-        tinyURL: `${baseUrl}/api/${response.data.tinyId}`,
-      });
+      setTinyUrl([
+        ...tinyUrl,
+        {
+          originalURL: url,
+          tinyURL: `${baseUrl}/api/${response.data.tinyId}`,
+        },
+      ]);
       toast.success("Tiny URL Generated Successfully");
     } catch (error: any) {
       toast.success(error.response.data.message);
