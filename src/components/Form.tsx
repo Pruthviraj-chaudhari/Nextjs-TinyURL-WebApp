@@ -38,7 +38,7 @@ const Form = () => {
       ]);
       toast.success("Tiny URL Generated Successfully");
     } catch (error: any) {
-      toast.success(error.response.data.message);
+      toast.error(error.response.data.message);
     }
     setLoading(false);
   }
