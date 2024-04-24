@@ -1,8 +1,7 @@
 import dbConnect from "@/config/database";
 import URL from "@/models/url";
-import { NextApiRequest } from "next";
 
-export async function GET(req: NextApiRequest, {params}: any) {
+export async function GET(req: Request, {params}: any) {
   try {
     await dbConnect();
     
