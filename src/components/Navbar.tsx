@@ -7,7 +7,7 @@ import { ModeToggle } from "@/components/ModeToggle";
 
 const Navbar = () => {
   return (
-    <header className="px-4 lg:px-6 h-14 flex items-center border-b border-gray-200 dark:border-gray-800">
+    <header className="px-4 lg:px-6 h-14 flex items-center border-b border-gray-200 dark:border-gray-800 z-10">
       <Link className="flex items-center justify-center" href="#">
         <div className=" flex w-full items-center justify-center dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
           <Image
