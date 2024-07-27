@@ -33,7 +33,7 @@ const Form = () => {
         ...tinyUrl,
         {
           originalURL: url,
-          tinyURL: `${baseUrl}/api/${response.data.tinyId}`,
+          tinyURL: `${baseUrl}/${response.data.tinyId}`,
         },
       ]);
       toast.success("Tiny URL Generated Successfully");
