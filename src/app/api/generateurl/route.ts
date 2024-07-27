@@ -8,18 +8,25 @@ export async function POST(req: Request) {
     await dbConnect();
     const reqBody = await req.json();
     const { url } = reqBody;
+    const alias = 'alias' in reqBody ? reqBody.alias : null;
 
     // Validate URL format
     try {
-      new URL(url);  // Throws an error if URL is invalid
+      new URL(url); 
     } catch (error) {
       return Response.json({
         success: false,
         message: "Invalid URL format",
-      }, { status: 400 }); // Bad Request status code
+      }, { status: 400 });
     }
 
-    const tinyId = nanoid(5);
+    let tinyId;
+
+    if (alias && alias.trim() !== "") {
+      tinyId = alias;
+    } else {
+      tinyId = nanoid(5);
+    }
 
     const newUrl = new Url({
       tinyUrl: tinyId,
@@ -32,7 +39,7 @@ export async function POST(req: Request) {
     return Response.json(
       {
         success: true,
-        message: "New Tiny Url created",
+        message: "Tiny URL generated successfully",
         tinyId: newUrl.tinyUrl,
       },
       { status: 200 }

@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
       </Link>
 
-      <nav className="ml-auto flex gap-4 sm:gap-6">
+      <nav className="ml-auto flex gap-1 md:gap-6">
         <Link
           target="_blank"
           rel="noreferrer"
