@@ -15,7 +15,7 @@ const Form = () => {
   const [tinyUrl, setTinyUrl] = useState([
     {
       originalURL: "https://example.com",
-      tinyURL: `${baseUrl}/api/hgasb`,
+      tinyURL: `${baseUrl}/alias`,
     },
   ]);
 
