@@ -30,7 +30,7 @@ const Customize: React.FC<CustomizeProps> = ({ alias, setAlias }) => {
   const debounceCheckAvailability = useCallback(() => {
     const handler = setTimeout(() => {
       checkAliasAvailability(inputValue);
-    }, 300);
+    }, 500);
 
     return () => {
       clearTimeout(handler);
@@ -76,7 +76,7 @@ const Customize: React.FC<CustomizeProps> = ({ alias, setAlias }) => {
           Customize
         </Button>
       </DialogTrigger>
-      <DialogContent className="md:max-w-md sm:max-w-[90vw]">
+      <DialogContent className="md:max-w-md max-w-[90vw] rounded-lg">
         <DialogHeader>
           <DialogTitle className="flex gap-2 justify-center md:justify-start">
             Customize link
@@ -86,8 +86,9 @@ const Customize: React.FC<CustomizeProps> = ({ alias, setAlias }) => {
             Create a custom link with alias.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex items-center space-x-2">
-          <div className="grid flex-1 gap-2">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-2">
+          <>
+          <div className="grid flex-1 gap-2 w-full">
             <Label htmlFor="link" className="sr-only">
               Link
             </Label>
@@ -104,10 +105,14 @@ const Customize: React.FC<CustomizeProps> = ({ alias, setAlias }) => {
               }}
             />
           </div>
+          <div className="flex justify-center md:justify-end items-center w-full md:hidden">
+            <p className={`flex my-2 ${messageColor}`}>{message}</p>
+          </div>
+          </>
           <Button
             type="button"
             size="sm"
-            className="px-3"
+            className="w-full md:w-auto px-3"
             onClick={handleCustomize}
             disabled={!isAvailable}
           >
@@ -120,7 +125,7 @@ const Customize: React.FC<CustomizeProps> = ({ alias, setAlias }) => {
               Close
             </Button>
           </DialogClose>
-          <div className="flex justify-center md:justify-end items-center w-full">
+          <div className="hidden md:flex justify-center md:justify-end items-center w-full">
             <p className={`flex my-2 ${messageColor}`}>{message}</p>
           </div>
         </DialogFooter>
