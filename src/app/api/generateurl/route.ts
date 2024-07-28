@@ -22,7 +22,16 @@ export async function POST(req: Request) {
 
     let tinyId;
 
+    const maxAliasLength = 20;
+    const aliasPattern = /^[a-zA-Z0-9_-]+$/;
+
     if (alias && alias.trim() !== "") {
+      if (alias.length < 5 || alias.length > maxAliasLength || !aliasPattern.test(alias)) {
+        return Response.json({
+          success: false,
+          message: `Alias must be between 5 and ${maxAliasLength} characters and can only contain letters, numbers, underscores, and dashes.`,
+        }, { status: 400 });
+      }
       tinyId = alias;
     } else {
       tinyId = nanoid(5);

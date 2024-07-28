@@ -9,11 +9,24 @@ export async function POST(req: Request) {
 
         alias = alias?.trim();
 
-        if (!alias || alias.length <= 4) {
+        const maxAliasLength = 20;
+        const aliasPattern = /^[a-zA-Z0-9_-]+$/; // Allow only letters, numbers, underscores, and dashes
+
+        if (!alias || alias.length < 5 || alias.length > maxAliasLength) {
             return Response.json(
                 {
                     success: false,
-                    message: "Alias must be at least 5 characters.",
+                    message: `Alias must be between 5 to ${maxAliasLength} characters.`,
+                },
+                { status: 400 }
+            );
+        }
+
+        if (!aliasPattern.test(alias)) {
+            return Response.json(
+                {
+                    success: false,
+                    message: "Alias cannot contain special characters.",
                 },
                 { status: 400 }
             );
