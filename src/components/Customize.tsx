@@ -30,7 +30,7 @@ const Customize: React.FC<CustomizeProps> = ({ alias, setAlias }) => {
   const debounceCheckAvailability = useCallback(() => {
     const handler = setTimeout(() => {
       checkAliasAvailability(inputValue);
-    }, 500);
+    }, 300);
 
     return () => {
       clearTimeout(handler);
