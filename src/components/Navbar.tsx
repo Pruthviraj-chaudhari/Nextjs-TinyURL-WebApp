@@ -25,7 +25,7 @@ const Navbar = () => {
       </Link>
 
       <nav className="ml-auto flex gap-1 md:gap-6">
-        <Link
+        {/* <Link
           target="_blank"
           rel="noreferrer"
           href="https://github.com/pruthviraj-chaudhari"
@@ -58,7 +58,7 @@ const Navbar = () => {
             </svg>
             <span className="sr-only">Twitter</span>
           </Button>
-        </Link>
+        </Link> */}
 
         <ModeToggle />
       </nav>
